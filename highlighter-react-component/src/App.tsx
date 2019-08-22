@@ -1,31 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Dummy  from './components/dummy/index'
+import Notebook from './components/notebook/index'
+
 import './styles/tailwind.scss'
+import './styles/main.scss'
 import {AppState} from './redux/store'
 import {SelectionState, AddAction, RemoveAction, CleanAction} from './services/types'
 import {connect} from 'react-redux'
 
-interface AppProps {
-  selection: SelectionState
-  //add: typeof add
-  //remove: typeof remove
-  //clean: typeof clean
-}
 
-
-
-
-/*
-const App: React.FC<AppProps> = () => {
-  return (
-    <div className="App">
-      This is main
-      <Dummy></Dummy>
-    </div>
-  );
-}*/
 class App extends React.Component {
 
   constructor(props:any){
@@ -35,8 +19,7 @@ class App extends React.Component {
   render(){
     return(
     <div className="App">
-      This is main
-    <Dummy></Dummy>
+    <Notebook> </Notebook>
   </div>)
   }
 }
