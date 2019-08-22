@@ -30,6 +30,6 @@ export const view = (state: ToolbarState, change: any) => {
         <Circle
             onClick = { () => change(Colors.green)} 
             className="bg-green-500 rounded-full h-8 w-8 flex items-center justify-center " style={ state.colorSelected === Colors.green  ? styleSelected : {}}></Circle>
-        <span/>gi
+        <span/>
     </Container>)
 }

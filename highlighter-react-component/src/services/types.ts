@@ -2,6 +2,10 @@ export const ADD: string = 'ADD'
 export const REMOVE: string = 'REMOVE'
 export const CLEAN: string = 'CLEAN'
 
+export const CHANGE_TO_RED : string = 'CHANGE_TO_RED'
+export const CHANGE_TO_YELLOW : string = 'CHANGE_TO_YELLOW'
+export const CHANGE_TO_GREEN : string = 'CHANGE_TO_GREEN'
+
 export enum Colors {
     red = 'RED',
     yellow = 'YELLOW',
@@ -29,5 +33,12 @@ export interface CleanAction {
 }
 
 export interface SelectionState { 
+    pencil: string
     highlighted: Highlighted[]
 }
+
+export interface ChangeColorAction {
+    type: string 
+    colorToChange: string 
+}
+

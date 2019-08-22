@@ -1,25 +1,45 @@
 import React from 'react'
 import { view } from './view';
-import { Colors } from '../../services/types';
-
+import { Colors, SelectionState, CHANGE_TO_GREEN, CHANGE_TO_RED, CHANGE_TO_YELLOW } from '../../services/types';
+import { connect } from 'react-redux';
 
 export interface ToolbarState {
-    colorSelected: string 
+  colorSelected?: string,
+  change(color: string): void
 }
 
-class Toolbar extends React.Component {
-
-    state: ToolbarState = { 
-        colorSelected : Colors.red
-
-    }
-    constructor(props:any){
-        super(props)
-    }
-
-    change = (color: string) => this.setState({colorSelected: color})
-
-    render = () => view(this.state, this.change)
+class Toolbar extends React.Component{
+  constructor(props: any) {
+    super(props)
+  }
+  change = (color: string) => this.setState({ colorSelected: color })
+  render = () => view(this.props as any, this.change)
 }
 
-export default Toolbar
+const mapStateToProps = (state: any) => {
+  return {
+    colorSelected: state.selection.pencil
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    change: (value: string) => {
+      switch (value) {
+        case Colors.red:
+          dispatch({ type: CHANGE_TO_RED })
+          break
+        case Colors.yellow:
+          dispatch({ type: CHANGE_TO_YELLOW })
+          break
+        case Colors.green:
+          dispatch({ type: CHANGE_TO_GREEN })
+          break
+        default:
+          break
+      }
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Toolbar)

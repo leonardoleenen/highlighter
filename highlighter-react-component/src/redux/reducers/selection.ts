@@ -4,9 +4,14 @@ import {
   ADD,
   REMOVE,
   CLEAN,
+  CHANGE_TO_GREEN,
+  CHANGE_TO_RED,
+  CHANGE_TO_YELLOW,
   AddAction, 
   RemoveAction,
-  CleanAction
+  CleanAction,
+  Colors,
+  ChangeColorAction
 } from '../../services/types'
 
 
@@ -21,7 +26,7 @@ const hashCode = (toHash: string) : number =>  {
   return hash;
 };
 
-export const selection = (state: SelectionState = {highlighted: []}, action: AddAction | RemoveAction | CleanAction) : SelectionState => {
+export const selection = (state: SelectionState = {pencil: Colors.red,  highlighted: []}, action: AddAction | RemoveAction | CleanAction | ChangeColorAction) : SelectionState => {
   let highlighted = [] 
   
   switch (action.type) {
@@ -37,8 +42,13 @@ export const selection = (state: SelectionState = {highlighted: []}, action: Add
       return {...state,highlighted: highlighted.filter( h => h.id! ===removeElement.toRemove )}
     case CLEAN: 
       return {...state,highlighted: []}
+    case CHANGE_TO_RED:
+        return {...state,pencil: Colors.red}
+      case CHANGE_TO_YELLOW:
+        return {...state,pencil: Colors.yellow}
+      case CHANGE_TO_GREEN:
+        return {...state,pencil: Colors.green}
     default: 
       return state
   }
 } 
-
