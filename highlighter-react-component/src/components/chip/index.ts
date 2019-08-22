@@ -1,12 +1,26 @@
 import React from 'react' 
 import {connect} from 'react-redux'
 import {view} from './view'
+import {backgroundPalette} from '../../services/types';
 
-class Chip extends React.Component {
+interface ChipProps {
+    id?: string
+    color? : string 
+    text? : string 
+} 
+
+
+class Chip extends React.Component<ChipProps>{
+
+    
     constructor(props:any){
         super(props)
     }
-    render = () => view()
+    render(){
+        const backgroundColor : string = backgroundPalette[(this.props as any).color.toLowerCase() as 'red' | 'yellow' | 'green']
+        
+        return view((this.props as any).id,backgroundColor, (this.props as any).text)
+    }
 }
 
 

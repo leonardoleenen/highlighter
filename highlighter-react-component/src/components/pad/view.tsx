@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Highlighted } from '../../services/types';
+import Chip from '../chip/index';
 
 const Container = styled.div`
     display: grid; 
@@ -19,17 +21,22 @@ const ActionZone  = styled.div `
 
 
 
-export const view = (add : any, colorSelected: string) => {
+export const view = (add : any, clean: any, colorSelected: string, highlighted: Highlighted[]) => {
     return (
         <Container className="bg-white rounded-lg shadow-md">
             <WriteZone 
                 onMouseUp = {() => add(colorSelected, (window.getSelection() as any).toString())}
-                contentEditable className='p-4 border-b-2 border-gray-400 '>
+                suppressContentEditableWarning={true}
+                contentEditable 
+                className='p-4 border-b-2 border-gray-400 overflow-auto '>
                 {text}
             </WriteZone>
-            <SelectionZone></SelectionZone>
+            
+            <SelectionZone className="overflow-x-auto">
+                {highlighted.map(h => (<Chip id={h.id} color={h.color} text={h.text} key={h.id}></Chip>))}
+            </SelectionZone>
             <ActionZone className = " flex justify-end ">
-                <button className=" uppercase m-2 text-blue-500 font-semibold">Clear All</button>
+                <button className=" uppercase m-2 text-blue-500 font-semibold" onClick = { () => clean()}>Clear All</button>
                 <button className="  uppercase m-2 text-blue-500 font-semibold mr-8 ">Save</button>
             </ActionZone>
         </Container>

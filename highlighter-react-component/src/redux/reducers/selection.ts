@@ -31,7 +31,6 @@ export const selection = (state: SelectionState = {pencil: Colors.red,  highligh
   
   switch (action.type) {
     case ADD: 
-      debugger
       highlighted = Object.assign([] as Highlighted[],state.highlighted)
       const  addElement  = action as AddAction
       addElement.toAdd.id = hashCode(addElement.toAdd.color + addElement.toAdd.text).toString()

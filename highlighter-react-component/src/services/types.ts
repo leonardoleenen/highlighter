@@ -18,6 +18,12 @@ export interface Highlighted {
     text: string    
 }
 
+export const backgroundPalette = {
+    'red': 'bg-red-500',
+    'yellow': 'bg-yellow-400',
+    'green': 'bg-green-400'
+}
+
 export interface AddAction {
     type: typeof ADD,
     toAdd: Highlighted
