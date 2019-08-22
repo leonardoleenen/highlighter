@@ -39,7 +39,7 @@ export const selection = (state: SelectionState = {pencil: Colors.red,  highligh
     case REMOVE: 
       highlighted = Object.assign([] as Highlighted[],state.highlighted)
       const removeElement = action as RemoveAction
-      return {...state,highlighted: highlighted.filter( h => h.id! ===removeElement.toRemove )}
+      return {...state,highlighted: highlighted.filter( h => h.id!=removeElement.toRemove )}
     case CLEAN: 
       return {...state,highlighted: []}
     case CHANGE_TO_RED:
