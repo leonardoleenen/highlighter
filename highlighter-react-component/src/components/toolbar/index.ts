@@ -13,7 +13,7 @@ class Toolbar extends React.Component{
     super(props)
   }
   change = (color: string) => this.setState({ colorSelected: color })
-  render = () => view(this.props as any, this.change)
+  render = () => view((this.props as any).colorSelected, (this.props as any).change)
 }
 
 const mapStateToProps = (state: any) => {

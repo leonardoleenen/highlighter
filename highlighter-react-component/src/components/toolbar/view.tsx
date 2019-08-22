@@ -18,18 +18,18 @@ const Circle  = styled.div`
 
 const styleSelected = {filter: 'blur(2px)'}
 
-export const view = (state: ToolbarState, change: any) => {
+export const view = (colorSelected: string , change: any) => {
     return (<Container className="bg-white h-100px ml-8 rounded-full shadow-md ">
         <span/>
         <Circle
             onClick = { () => change(Colors.red)} 
-            className="bg-red-500 rounded-full h-8 w-8 flex items-center justify-center " style={ state.colorSelected === Colors.red  ? styleSelected : {}}></Circle>
+            className="bg-red-500 rounded-full h-8 w-8 flex items-center justify-center " style={ colorSelected === Colors.red  ? styleSelected : {}}></Circle>
         <Circle
             onClick = { () => change(Colors.yellow)} 
-            className="bg-yellow-500 rounded-full h-8 w-8 flex items-center justify-center " style={ state.colorSelected === Colors.yellow  ? styleSelected : {}}></Circle>
+            className="bg-yellow-500 rounded-full h-8 w-8 flex items-center justify-center " style={ colorSelected === Colors.yellow  ? styleSelected : {}}></Circle>
         <Circle
             onClick = { () => change(Colors.green)} 
-            className="bg-green-500 rounded-full h-8 w-8 flex items-center justify-center " style={ state.colorSelected === Colors.green  ? styleSelected : {}}></Circle>
+            className="bg-green-500 rounded-full h-8 w-8 flex items-center justify-center " style={ colorSelected === Colors.green  ? styleSelected : {}}></Circle>
         <span/>
     </Container>)
 }
