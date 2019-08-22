@@ -1,5 +1,7 @@
 import React from 'react'
 import { view } from './view'
+import {connect } from 'react-redux'
+import { ADD, AddAction, Highlighted } from '../../services/types';
 
 class Pad extends React.Component {
 
@@ -7,7 +9,19 @@ class Pad extends React.Component {
         super(props)
     }
 
-    render = () => view()
+    render = () => view((this.props as any).add, (this.props as any).colorSelected)
 }
 
-export default Pad
+const mapStateToProps = (state:any) => {
+    return {
+        colorSelected: state.selection.pencil
+    }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        add: (color: string, text: string) => dispatch({type: ADD, toAdd:{color,text} as Highlighted} as AddAction) 
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Pad)

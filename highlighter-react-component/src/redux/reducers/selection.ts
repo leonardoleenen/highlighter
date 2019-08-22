@@ -31,13 +31,14 @@ export const selection = (state: SelectionState = {pencil: Colors.red,  highligh
   
   switch (action.type) {
     case ADD: 
-      highlighted = Object.assign([] as Highlighted[],state)
+      debugger
+      highlighted = Object.assign([] as Highlighted[],state.highlighted)
       const  addElement  = action as AddAction
       addElement.toAdd.id = hashCode(addElement.toAdd.color + addElement.toAdd.text).toString()
       highlighted.push(addElement.toAdd)
       return {...state,highlighted}
     case REMOVE: 
-      highlighted = Object.assign([] as Highlighted[],state)
+      highlighted = Object.assign([] as Highlighted[],state.highlighted)
       const removeElement = action as RemoveAction
       return {...state,highlighted: highlighted.filter( h => h.id! ===removeElement.toRemove )}
     case CLEAN: 
