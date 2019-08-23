@@ -13,6 +13,11 @@ This project was built with these frameworks:
 * TypeScript 3.5.3
 * TailwindCSS 1.1.3 
 
+I use figma for design. Feel free to download / use from assets/highligther.fig from this repo. 
+![Figma Design](/assets/example.png)
+
+
+
 # How to Run? 
 Clone this repo  and then:
 
