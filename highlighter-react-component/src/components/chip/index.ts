@@ -9,6 +9,7 @@ interface ChipProps {
   text?: string;
 }
 
+/** Chip componets are elements  */
 class Chip extends React.Component<ChipProps> {
   constructor(props: any) {
     super(props);

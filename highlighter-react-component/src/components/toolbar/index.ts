@@ -1,13 +1,10 @@
 import React from 'react'
 import { view } from './view';
-import { Colors, SelectionState, CHANGE_TO_GREEN, CHANGE_TO_RED, CHANGE_TO_YELLOW } from '../../services/types';
+import { Colors,  CHANGE_TO_GREEN, CHANGE_TO_RED, CHANGE_TO_YELLOW } from '../../services/types';
 import { connect } from 'react-redux';
 
-export interface ToolbarState {
-  colorSelected?: string,
-  change(color: string): void
-}
 
+/** This component is a toolbar component for choice diferents colors */
 class Toolbar extends React.Component{
   constructor(props: any) {
     super(props)

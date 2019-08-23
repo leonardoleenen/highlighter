@@ -9,6 +9,11 @@ import {
   CLEAN
 } from "../../services/types";
 
+
+/**
+ * this component contains 3 main sections: WriteSection where user can add text and make your markup, second seccion 
+ * is a list of all selected phrases and last section is an action section that only got two action buttons
+ */
 class Pad extends React.Component {
   constructor(props: any) {
     super(props);
