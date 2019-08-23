@@ -31,9 +31,14 @@ export const selection = (state: SelectionState = {pencil: Colors.red,  highligh
   
   switch (action.type) {
     case ADD: 
+      
       highlighted = Object.assign([] as Highlighted[],state.highlighted)
       const  addElement  = action as AddAction
-      addElement.toAdd.id = hashCode(addElement.toAdd.color + addElement.toAdd.text).toString()
+      
+      if (!addElement.toAdd.text.trim()) //Empty Element
+        return state
+      
+        addElement.toAdd.id = hashCode(addElement.toAdd.color + addElement.toAdd.text).toString()
       highlighted.push(addElement.toAdd)
       return {...state,highlighted}
     case REMOVE: 
