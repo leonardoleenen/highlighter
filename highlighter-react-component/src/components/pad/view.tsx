@@ -37,7 +37,7 @@ export const view = (add : any, clean: any, colorSelected: string, highlighted: 
             </SelectionZone>
             <ActionZone className = " flex justify-end ">
                 <button className=" uppercase m-2 text-blue-500 font-semibold" onClick = { () => clean()}>Clear All</button>
-                <button className="  uppercase m-2 text-blue-500 font-semibold mr-8 ">Save</button>
+                <button className="  uppercase m-2 text-blue-500 font-semibold mr-8 " onClick={() => alert('this feature is comming. You can save your data in indexeddb (local database)')}>Save</button>
             </ActionZone>
         </Container>
     )

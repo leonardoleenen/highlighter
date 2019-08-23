@@ -11,42 +11,30 @@ import {
   RemoveAction,
   CleanAction,
   Colors,
-  ChangeColorAction
+  ChangeColorAction,
+  HighLighterService
 } from '../../services/types'
 
 
-const hashCode = (toHash: string) : number =>  {
-  var hash = 0, i, chr;
-  if (toHash.length === 0) return hash;
-  for (i = 0; i < toHash.length; i++) {
-    chr   = toHash.charCodeAt(i);
-    hash  = ((hash << 5) - hash) + chr;
-    hash |= 0; // Convert to 32bit integer
-  }
-  return hash;
-};
 
 export const selection = (state: SelectionState = {pencil: Colors.red,  highlighted: []}, action: AddAction | RemoveAction | CleanAction | ChangeColorAction) : SelectionState => {
   let highlighted = [] 
+  const service = new HighLighterService(Object.assign([] as Highlighted[],state.highlighted))
   
   switch (action.type) {
     case ADD: 
-      
-      highlighted = Object.assign([] as Highlighted[],state.highlighted)
       const  addElement  = action as AddAction
-      
-      if (!addElement.toAdd.text.trim()) //Empty Element
+      const id = service.addNewElement(addElement.toAdd.color,addElement.toAdd.text)
+      if (!id) //Empty Element
         return state
-      
-        addElement.toAdd.id = hashCode(addElement.toAdd.color + addElement.toAdd.text).toString()
-      highlighted.push(addElement.toAdd)
-      return {...state,highlighted}
+      return {...state,highlighted: service.getHighLighted()}
     case REMOVE: 
-      highlighted = Object.assign([] as Highlighted[],state.highlighted)
       const removeElement = action as RemoveAction
-      return {...state,highlighted: highlighted.filter( h => h.id!=removeElement.toRemove )}
+      service.removeElement(removeElement.toRemove)
+      return {...state,highlighted: service.getHighLighted()}
     case CLEAN: 
-      return {...state,highlighted: []}
+      service.cleanSelection()
+      return {...state,highlighted: service.getHighLighted()}
     case CHANGE_TO_RED:
         return {...state,pencil: Colors.red}
       case CHANGE_TO_YELLOW:
